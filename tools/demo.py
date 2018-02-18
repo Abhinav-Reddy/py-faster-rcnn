@@ -1,5 +1,6 @@
 #!/usr/bin/env python
-
+import matplotlib 
+matplotlib.use('Agg')
 # --------------------------------------------------------
 # Faster R-CNN
 # Copyright (c) 2015 Microsoft
@@ -37,7 +38,7 @@ NETS = {'vgg16': ('VGG16',
                   'ZF_faster_rcnn_final.caffemodel')}
 
 
-def vis_detections(im, class_name, dets, thresh=0.5):
+def vis_detections(im, class_name, dets, image_name, thresh=0.5):
     """Draw detected bounding boxes."""
     inds = np.where(dets[:, -1] >= thresh)[0]
     if len(inds) == 0:
@@ -67,7 +68,8 @@ def vis_detections(im, class_name, dets, thresh=0.5):
                   fontsize=14)
     plt.axis('off')
     plt.tight_layout()
-    plt.draw()
+    plt.savefig(image_name)
+	#plt.draw()
 
 def demo(net, image_name):
     """Detect object classes in an image using pre-computed object proposals."""
@@ -95,7 +97,7 @@ def demo(net, image_name):
                           cls_scores[:, np.newaxis])).astype(np.float32)
         keep = nms(dets, NMS_THRESH)
         dets = dets[keep, :]
-        vis_detections(im, cls, dets, thresh=CONF_THRESH)
+        vis_detections(im, cls, dets, image_name, thresh=CONF_THRESH)
 
 def parse_args():
     """Parse input arguments."""
