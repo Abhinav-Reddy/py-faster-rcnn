@@ -26,11 +26,7 @@ import caffe, os, sys, cv2
 import argparse
 
 CLASSES = ('__background__',
-           'aeroplane', 'bicycle', 'bird', 'boat',
-           'bottle', 'bus', 'car', 'cat', 'chair',
-           'cow', 'diningtable', 'dog', 'horse',
-           'motorbike', 'person', 'pottedplant',
-           'sheep', 'sofa', 'train', 'tvmonitor')
+           'n02802426')
 
 NETS = {'vgg16': ('VGG16',
                   'VGG16_faster_rcnn_final.caffemodel'),
@@ -144,7 +140,11 @@ if __name__ == '__main__':
         _, _= im_detect(net, im)
 
     im_names = ['1.jpg', '2.jpg', '3.jpg',
-                '4.jpg', '5.jpg', '6.jpg']
+                '4.jpg', '5.jpg', '6.jpg',
+                '7.jpg', '8.jpg', '9.jpg',
+                '11.jpg', '12.jpg',
+                '13.jpg', '14.jpg', '15.jpg',
+		'16.jpg']
     for im_name in im_names:
         print '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
         print 'Demo for data/demo/{}'.format(im_name)
